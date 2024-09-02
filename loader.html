@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Screen with Progress Bar</title>
+ 
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.progress-container {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background-color: #4caf50;
+    transition: width 0.5s;
+}
+
+.progress-text {
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="progress-text">0%</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const progressBar = document.querySelector('.progress');
+    const progressText = document.querySelector('.progress-text');
+    
+    // Simulate data loading
+    let loaded = 0;
+    const total = 100; // Suppose we have 100 units of data to load
+    const interval = setInterval(() => {
+        loaded += 1; // Simulate loading each unit of data
+        const percentage = Math.floor((loaded / total) * 100);
+
+        progressBar.style.width = `${percentage}%`;
+        progressText.textContent = `${percentage}%`;
+
+
+        if (loaded >= total) {
+            clearInterval(interval); // Stop the loading simulation
+        }
+    }, 50); // Adjust the interval time to speed up or slow down the progress
+});
+    </script>
+</body>
+</html>
